@@ -59,14 +59,6 @@ export const requireAccessToken = async (req, res, next) => {
     const { id } = payload;
     const user = await prisma.user.findUnique({ // 3-7(1). 비밀번호 제외하고 받아오고 싶으나 정식 버전에는 포함되어 있지 않다.
       where: { id },
-      // select: {
-      //   id: true,
-      //   email: true,
-      //   name : true,
-      //   role: true,
-      //   createdAt: true,
-      //   updatedAt: true,
-      // }
       omit: { password: true }, // 3-7(2). 프리뷰 omit 사용해서 적용하면 비밀번호 제외하고 받아온다.
     });
 
@@ -75,7 +67,7 @@ export const requireAccessToken = async (req, res, next) => {
         status: HTTP_STATUS.UNAUTHORIZED,
         message: MESSAGES.AUTH.COMMON.JWT.NO_USER,
       });
-    }
+    } 
 
     req.user = user;
     next();
