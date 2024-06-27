@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["omitApi"] // AccessToke 사용자 인증 미들웨어 3-7(2). 프리뷰 omit 사용
 }
 
 datasource db {
